@@ -1,0 +1,26 @@
+services:
+  omniroute:
+    image: diegosouzapw/omniroute:latest
+    container_name: omniroute
+    restart: unless-stopped
+    stop_grace_period: 40s
+    ports:
+      - "20128:20128"
+    volumes:
+      - omniroute-data:/app/data
+  
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    restart: unless-stopped
+    ports:
+      - "8642:8642"
+    environment:
+      - GATEWAY_ALLOW_ALL_USERS=true
+    volumes:
+      - ~/.hermes:/opt/data
+    command:
+      ["gateway", "run"]
+
+volumes:
+  omniroute-data:
