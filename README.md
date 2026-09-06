@@ -51,7 +51,7 @@ volumes:
 ### 2. Compose the Containers  
 
 ```
-docker compose up -d
+docker compose up --build -d
 ```
 
 ### 3. Configure Omniroute
